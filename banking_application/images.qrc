@@ -1,0 +1,9 @@
+<RCC>
+    <qresource prefix="/photo">
+        <file>qt_bank.jpeg</file>
+        <file>qt_bank_1.jpeg</file>
+        <file>sign-in.html</file>
+        <file>add-user-male.html</file>
+        <file>images.jpeg</file>
+    </qresource>
+</RCC>
