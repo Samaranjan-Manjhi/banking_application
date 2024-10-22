@@ -14,10 +14,10 @@ EQ            = =
 
 CC            = gcc
 CXX           = g++
-DEFINES       = -DQT_DEPRECATED_WARNINGS -DQT_NO_DEBUG -DQT_WIDGETS_LIB -DQT_GUI_LIB -DQT_CORE_LIB
+DEFINES       = -DQT_DEPRECATED_WARNINGS -DQT_NO_DEBUG -DQT_WIDGETS_LIB -DQT_GUI_LIB -DQT_SQL_LIB -DQT_CORE_LIB
 CFLAGS        = -pipe -O2 -Wall -W -D_REENTRANT -fPIC $(DEFINES)
 CXXFLAGS      = -pipe -O2 -Wall -W -D_REENTRANT -fPIC $(DEFINES)
-INCPATH       = -I. -I. -isystem /usr/include/x86_64-linux-gnu/qt5 -isystem /usr/include/x86_64-linux-gnu/qt5/QtWidgets -isystem /usr/include/x86_64-linux-gnu/qt5/QtGui -isystem /usr/include/x86_64-linux-gnu/qt5/QtCore -I. -I. -I/usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++
+INCPATH       = -I. -I. -isystem /usr/include/x86_64-linux-gnu/qt5 -isystem /usr/include/x86_64-linux-gnu/qt5/QtWidgets -isystem /usr/include/x86_64-linux-gnu/qt5/QtGui -isystem /usr/include/x86_64-linux-gnu/qt5/QtSql -isystem /usr/include/x86_64-linux-gnu/qt5/QtCore -I. -I. -I/usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++
 QMAKE         = /usr/lib/qt5/bin/qmake
 DEL_FILE      = rm -f
 CHK_DIR_EXISTS= test -d
@@ -40,7 +40,7 @@ DISTNAME      = banking_application1.0.0
 DISTDIR = /home/shubham/Desktop/samaranjan/work_prac/QT/banking_application/.tmp/banking_application1.0.0
 LINK          = g++
 LFLAGS        = -Wl,-O1
-LIBS          = $(SUBLIBS) /usr/lib/x86_64-linux-gnu/libQt5Widgets.so /usr/lib/x86_64-linux-gnu/libQt5Gui.so /usr/lib/x86_64-linux-gnu/libQt5Core.so /usr/lib/x86_64-linux-gnu/libGL.so -lpthread   
+LIBS          = $(SUBLIBS) /usr/lib/x86_64-linux-gnu/libQt5Widgets.so /usr/lib/x86_64-linux-gnu/libQt5Gui.so /usr/lib/x86_64-linux-gnu/libQt5Sql.so /usr/lib/x86_64-linux-gnu/libQt5Core.so /usr/lib/x86_64-linux-gnu/libGL.so -lpthread   
 AR            = ar cqs
 RANLIB        = 
 SED           = sed
@@ -52,16 +52,24 @@ OBJECTS_DIR   = ./
 
 ####### Files
 
-SOURCES       = main.cpp \
+SOURCES       = dashboard.cpp \
+		main.cpp \
 		scammerbank.cpp \
+		sign_in.cpp \
 		sign_up.cpp qrc_images.cpp \
+		moc_dashboard.cpp \
 		moc_scammerbank.cpp \
+		moc_sign_in.cpp \
 		moc_sign_up.cpp
-OBJECTS       = main.o \
+OBJECTS       = dashboard.o \
+		main.o \
 		scammerbank.o \
+		sign_in.o \
 		sign_up.o \
 		qrc_images.o \
+		moc_dashboard.o \
 		moc_scammerbank.o \
+		moc_sign_in.o \
 		moc_sign_up.o
 DIST          = /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/spec_pre.prf \
 		/usr/lib/x86_64-linux-gnu/qt5/mkspecs/common/unix.conf \
@@ -138,9 +146,13 @@ DIST          = /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/spec_pre.prf \
 		/usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/exceptions.prf \
 		/usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/yacc.prf \
 		/usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/lex.prf \
-		banking_application.pro scammerbank.h \
-		sign_up.h main.cpp \
+		banking_application.pro dashboard.h \
+		scammerbank.h \
+		sign_in.h \
+		sign_up.h dashboard.cpp \
+		main.cpp \
 		scammerbank.cpp \
+		sign_in.cpp \
 		sign_up.cpp
 QMAKE_TARGET  = banking_application
 DESTDIR       = 
@@ -150,7 +162,7 @@ TARGET        = banking_application
 first: all
 ####### Build rules
 
-banking_application: ui_scammerbank.h ui_sign_up.h $(OBJECTS)  
+banking_application: ui_dashboard.h ui_scammerbank.h ui_sign_in.h ui_sign_up.h $(OBJECTS)  
 	$(LINK) $(LFLAGS) -o $(TARGET) $(OBJECTS) $(OBJCOMP) $(LIBS)
 
 Makefile: banking_application.pro /usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++/qmake.conf /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/spec_pre.prf \
@@ -324,9 +336,9 @@ distdir: FORCE
 	$(COPY_FILE) --parents $(DIST) $(DISTDIR)/
 	$(COPY_FILE) --parents images.qrc $(DISTDIR)/
 	$(COPY_FILE) --parents /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/data/dummy.cpp $(DISTDIR)/
-	$(COPY_FILE) --parents scammerbank.h sign_up.h $(DISTDIR)/
-	$(COPY_FILE) --parents main.cpp scammerbank.cpp sign_up.cpp $(DISTDIR)/
-	$(COPY_FILE) --parents scammerbank.ui sign_up.ui $(DISTDIR)/
+	$(COPY_FILE) --parents dashboard.h scammerbank.h sign_in.h sign_up.h $(DISTDIR)/
+	$(COPY_FILE) --parents dashboard.cpp main.cpp scammerbank.cpp sign_in.cpp sign_up.cpp $(DISTDIR)/
+	$(COPY_FILE) --parents dashboard.ui scammerbank.ui sign_in.ui sign_up.ui $(DISTDIR)/
 
 
 clean: compiler_clean 
@@ -356,6 +368,7 @@ compiler_rcc_clean:
 qrc_images.cpp: images.qrc \
 		/usr/lib/qt5/bin/rcc \
 		images.jpeg \
+		Untitled.jpeg \
 		add-user-male.html \
 		qt_bank.jpeg \
 		qt_bank_1.jpeg \
@@ -368,29 +381,48 @@ compiler_moc_predefs_clean:
 moc_predefs.h: /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/data/dummy.cpp
 	g++ -pipe -O2 -Wall -W -dM -E -o moc_predefs.h /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/data/dummy.cpp
 
-compiler_moc_header_make_all: moc_scammerbank.cpp moc_sign_up.cpp
+compiler_moc_header_make_all: moc_dashboard.cpp moc_scammerbank.cpp moc_sign_in.cpp moc_sign_up.cpp
 compiler_moc_header_clean:
-	-$(DEL_FILE) moc_scammerbank.cpp moc_sign_up.cpp
-moc_scammerbank.cpp: scammerbank.h \
+	-$(DEL_FILE) moc_dashboard.cpp moc_scammerbank.cpp moc_sign_in.cpp moc_sign_up.cpp
+moc_dashboard.cpp: dashboard.h \
 		moc_predefs.h \
 		/usr/lib/qt5/bin/moc
-	/usr/lib/qt5/bin/moc $(DEFINES) --include /home/shubham/Desktop/samaranjan/work_prac/QT/banking_application/moc_predefs.h -I/usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++ -I/home/shubham/Desktop/samaranjan/work_prac/QT/banking_application -I/home/shubham/Desktop/samaranjan/work_prac/QT/banking_application -I/usr/include/x86_64-linux-gnu/qt5 -I/usr/include/x86_64-linux-gnu/qt5/QtWidgets -I/usr/include/x86_64-linux-gnu/qt5/QtGui -I/usr/include/x86_64-linux-gnu/qt5/QtCore -I/usr/include/c++/9 -I/usr/include/x86_64-linux-gnu/c++/9 -I/usr/include/c++/9/backward -I/usr/lib/gcc/x86_64-linux-gnu/9/include -I/usr/local/include -I/usr/include/x86_64-linux-gnu -I/usr/include scammerbank.h -o moc_scammerbank.cpp
+	/usr/lib/qt5/bin/moc $(DEFINES) --include /home/shubham/Desktop/samaranjan/work_prac/QT/banking_application/moc_predefs.h -I/usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++ -I/home/shubham/Desktop/samaranjan/work_prac/QT/banking_application -I/home/shubham/Desktop/samaranjan/work_prac/QT/banking_application -I/usr/include/x86_64-linux-gnu/qt5 -I/usr/include/x86_64-linux-gnu/qt5/QtWidgets -I/usr/include/x86_64-linux-gnu/qt5/QtGui -I/usr/include/x86_64-linux-gnu/qt5/QtSql -I/usr/include/x86_64-linux-gnu/qt5/QtCore -I/usr/include/c++/9 -I/usr/include/x86_64-linux-gnu/c++/9 -I/usr/include/c++/9/backward -I/usr/lib/gcc/x86_64-linux-gnu/9/include -I/usr/local/include -I/usr/include/x86_64-linux-gnu -I/usr/include dashboard.h -o moc_dashboard.cpp
+
+moc_scammerbank.cpp: scammerbank.h \
+		sign_up.h \
+		moc_predefs.h \
+		/usr/lib/qt5/bin/moc
+	/usr/lib/qt5/bin/moc $(DEFINES) --include /home/shubham/Desktop/samaranjan/work_prac/QT/banking_application/moc_predefs.h -I/usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++ -I/home/shubham/Desktop/samaranjan/work_prac/QT/banking_application -I/home/shubham/Desktop/samaranjan/work_prac/QT/banking_application -I/usr/include/x86_64-linux-gnu/qt5 -I/usr/include/x86_64-linux-gnu/qt5/QtWidgets -I/usr/include/x86_64-linux-gnu/qt5/QtGui -I/usr/include/x86_64-linux-gnu/qt5/QtSql -I/usr/include/x86_64-linux-gnu/qt5/QtCore -I/usr/include/c++/9 -I/usr/include/x86_64-linux-gnu/c++/9 -I/usr/include/c++/9/backward -I/usr/lib/gcc/x86_64-linux-gnu/9/include -I/usr/local/include -I/usr/include/x86_64-linux-gnu -I/usr/include scammerbank.h -o moc_scammerbank.cpp
+
+moc_sign_in.cpp: sign_in.h \
+		moc_predefs.h \
+		/usr/lib/qt5/bin/moc
+	/usr/lib/qt5/bin/moc $(DEFINES) --include /home/shubham/Desktop/samaranjan/work_prac/QT/banking_application/moc_predefs.h -I/usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++ -I/home/shubham/Desktop/samaranjan/work_prac/QT/banking_application -I/home/shubham/Desktop/samaranjan/work_prac/QT/banking_application -I/usr/include/x86_64-linux-gnu/qt5 -I/usr/include/x86_64-linux-gnu/qt5/QtWidgets -I/usr/include/x86_64-linux-gnu/qt5/QtGui -I/usr/include/x86_64-linux-gnu/qt5/QtSql -I/usr/include/x86_64-linux-gnu/qt5/QtCore -I/usr/include/c++/9 -I/usr/include/x86_64-linux-gnu/c++/9 -I/usr/include/c++/9/backward -I/usr/lib/gcc/x86_64-linux-gnu/9/include -I/usr/local/include -I/usr/include/x86_64-linux-gnu -I/usr/include sign_in.h -o moc_sign_in.cpp
 
 moc_sign_up.cpp: sign_up.h \
 		moc_predefs.h \
 		/usr/lib/qt5/bin/moc
-	/usr/lib/qt5/bin/moc $(DEFINES) --include /home/shubham/Desktop/samaranjan/work_prac/QT/banking_application/moc_predefs.h -I/usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++ -I/home/shubham/Desktop/samaranjan/work_prac/QT/banking_application -I/home/shubham/Desktop/samaranjan/work_prac/QT/banking_application -I/usr/include/x86_64-linux-gnu/qt5 -I/usr/include/x86_64-linux-gnu/qt5/QtWidgets -I/usr/include/x86_64-linux-gnu/qt5/QtGui -I/usr/include/x86_64-linux-gnu/qt5/QtCore -I/usr/include/c++/9 -I/usr/include/x86_64-linux-gnu/c++/9 -I/usr/include/c++/9/backward -I/usr/lib/gcc/x86_64-linux-gnu/9/include -I/usr/local/include -I/usr/include/x86_64-linux-gnu -I/usr/include sign_up.h -o moc_sign_up.cpp
+	/usr/lib/qt5/bin/moc $(DEFINES) --include /home/shubham/Desktop/samaranjan/work_prac/QT/banking_application/moc_predefs.h -I/usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++ -I/home/shubham/Desktop/samaranjan/work_prac/QT/banking_application -I/home/shubham/Desktop/samaranjan/work_prac/QT/banking_application -I/usr/include/x86_64-linux-gnu/qt5 -I/usr/include/x86_64-linux-gnu/qt5/QtWidgets -I/usr/include/x86_64-linux-gnu/qt5/QtGui -I/usr/include/x86_64-linux-gnu/qt5/QtSql -I/usr/include/x86_64-linux-gnu/qt5/QtCore -I/usr/include/c++/9 -I/usr/include/x86_64-linux-gnu/c++/9 -I/usr/include/c++/9/backward -I/usr/lib/gcc/x86_64-linux-gnu/9/include -I/usr/local/include -I/usr/include/x86_64-linux-gnu -I/usr/include sign_up.h -o moc_sign_up.cpp
 
 compiler_moc_objc_header_make_all:
 compiler_moc_objc_header_clean:
 compiler_moc_source_make_all:
 compiler_moc_source_clean:
-compiler_uic_make_all: ui_scammerbank.h ui_sign_up.h
+compiler_uic_make_all: ui_dashboard.h ui_scammerbank.h ui_sign_in.h ui_sign_up.h
 compiler_uic_clean:
-	-$(DEL_FILE) ui_scammerbank.h ui_sign_up.h
+	-$(DEL_FILE) ui_dashboard.h ui_scammerbank.h ui_sign_in.h ui_sign_up.h
+ui_dashboard.h: dashboard.ui \
+		/usr/lib/qt5/bin/uic
+	/usr/lib/qt5/bin/uic dashboard.ui -o ui_dashboard.h
+
 ui_scammerbank.h: scammerbank.ui \
 		/usr/lib/qt5/bin/uic
 	/usr/lib/qt5/bin/uic scammerbank.ui -o ui_scammerbank.h
+
+ui_sign_in.h: sign_in.ui \
+		/usr/lib/qt5/bin/uic
+	/usr/lib/qt5/bin/uic sign_in.ui -o ui_sign_in.h
 
 ui_sign_up.h: sign_up.ui \
 		/usr/lib/qt5/bin/uic
@@ -406,23 +438,44 @@ compiler_clean: compiler_rcc_clean compiler_moc_predefs_clean compiler_moc_heade
 
 ####### Compile
 
-main.o: main.cpp scammerbank.h
+dashboard.o: dashboard.cpp dashboard.h \
+		ui_dashboard.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o dashboard.o dashboard.cpp
+
+main.o: main.cpp scammerbank.h \
+		sign_up.h \
+		ui_sign_up.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o main.o main.cpp
 
 scammerbank.o: scammerbank.cpp scammerbank.h \
+		sign_up.h \
 		ui_scammerbank.h \
-		sign_up.h
+		sign_in.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o scammerbank.o scammerbank.cpp
 
+sign_in.o: sign_in.cpp sign_in.h \
+		ui_sign_in.h \
+		sign_up.h \
+		dashboard.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o sign_in.o sign_in.cpp
+
 sign_up.o: sign_up.cpp sign_up.h \
-		ui_sign_up.h
+		ui_sign_up.h \
+		scammerbank.h \
+		sign_in.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o sign_up.o sign_up.cpp
 
 qrc_images.o: qrc_images.cpp 
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o qrc_images.o qrc_images.cpp
 
+moc_dashboard.o: moc_dashboard.cpp 
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o moc_dashboard.o moc_dashboard.cpp
+
 moc_scammerbank.o: moc_scammerbank.cpp 
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o moc_scammerbank.o moc_scammerbank.cpp
+
+moc_sign_in.o: moc_sign_in.cpp 
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o moc_sign_in.o moc_sign_in.cpp
 
 moc_sign_up.o: moc_sign_up.cpp 
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o moc_sign_up.o moc_sign_up.cpp

@@ -6,6 +6,7 @@
 #include <QString>
 #include <QLabel>
 #include <QTimer>
+#include <QStackedWidget>
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class ScammerBank; }
@@ -18,10 +19,12 @@ class ScammerBank : public QMainWindow
 public:
     ScammerBank(QWidget *parent = nullptr);
     ~ScammerBank();
+    void showScrollLabel();
+    void hideScrollLabel();
 
 private slots:
-
     void on_signup_clicked();
+    void on_signin_clicked();
 
 private:
     Ui::ScammerBank *ui;

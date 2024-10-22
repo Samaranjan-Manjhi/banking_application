@@ -24,10 +24,10 @@ class Ui_ScammerBank
 {
 public:
     QWidget *centralwidget;
-    QLabel *label;
     QLabel *label_2;
     QPushButton *signup;
     QPushButton *signin;
+    QLabel *label;
     QMenuBar *menubar;
     QStatusBar *statusbar;
 
@@ -52,17 +52,11 @@ public:
         centralwidget->setSizePolicy(sizePolicy1);
         centralwidget->setMaximumSize(QSize(16777215, 16777215));
         centralwidget->setContextMenuPolicy(Qt::DefaultContextMenu);
-        label = new QLabel(centralwidget);
-        label->setObjectName(QString::fromUtf8("label"));
-        label->setGeometry(QRect(0, 0, 879, 770));
-        label->setAutoFillBackground(false);
-        label->setPixmap(QPixmap(QString::fromUtf8("../../../../../Downloads/pexels-brakou-1723637.jpg")));
-        label->setScaledContents(true);
         label_2 = new QLabel(centralwidget);
         label_2->setObjectName(QString::fromUtf8("label_2"));
-        label_2->setGeometry(QRect(220, 40, 321, 51));
+        label_2->setGeometry(QRect(220, 0, 321, 171));
         QFont font;
-        font.setFamily(QString::fromUtf8("Sarai"));
+        font.setFamily(QString::fromUtf8("Rasa"));
         font.setPointSize(28);
         font.setBold(true);
         font.setWeight(75);
@@ -77,21 +71,21 @@ public:
         signup->setObjectName(QString::fromUtf8("signup"));
         signup->setGeometry(QRect(670, 10, 71, 25));
         QFont font1;
-        font1.setFamily(QString::fromUtf8("Sarai"));
+        font1.setFamily(QString::fromUtf8("Rasa"));
         font1.setPointSize(14);
         font1.setBold(true);
         font1.setWeight(75);
         signup->setFont(font1);
         signup->setStyleSheet(QString::fromUtf8("QPushButton#signup {\n"
 "    background-color: transparent; \n"
-"    border-left-color: rgb(239, 135, 135);\n"
-"    color: #eeeeec; \n"
+"    color: #0C0909; \n"
+"    border: none; /* Remove border */\n"
 "}\n"
 "\n"
 "QPushButton#signup:hover {\n"
-"    background-color: transparent; \n"
-"    border-left-color: rgb(200, 100, 100); \n"
-"    color: rgb(255, 0, 0); \n"
+"    background-color: transparent; /* Keep background transparent on hover */\n"
+"    color: rgb(255, 0, 0); /* Change font color to red on hover */\n"
+"    border: none; /* Ensure no border on hover */\n"
 "}"));
         signin = new QPushButton(centralwidget);
         signin->setObjectName(QString::fromUtf8("signin"));
@@ -99,16 +93,25 @@ public:
         signin->setFont(font1);
         signin->setStyleSheet(QString::fromUtf8("QPushButton#signin {\n"
 "    background-color: transparent; \n"
-"    border-left-color: rgb(239, 135, 135);\n"
-"    color: #eeeeec; \n"
+"    color: #0C0909; \n"
+"    border: none; /* Remove border */\n"
 "}\n"
 "\n"
 "QPushButton#signin:hover {\n"
-"    background-color: transparent; \n"
-"    border-left-color: rgb(200, 100, 100); \n"
-"    color: rgb(255, 0, 0); \n"
+"    background-color: transparent; /* Keep background transparent on hover */\n"
+"    color: rgb(255, 0, 0); /* Change font color to red on hover */\n"
+"    border: none; /* Ensure no border on hover */\n"
 "}"));
+        label = new QLabel(centralwidget);
+        label->setObjectName(QString::fromUtf8("label"));
+        label->setGeometry(QRect(0, 0, 771, 561));
+        label->setPixmap(QPixmap(QString::fromUtf8(":/photo/images.jpeg")));
+        label->setScaledContents(true);
         ScammerBank->setCentralWidget(centralwidget);
+        label->raise();
+        label_2->raise();
+        signup->raise();
+        signin->raise();
         menubar = new QMenuBar(ScammerBank);
         menubar->setObjectName(QString::fromUtf8("menubar"));
         menubar->setGeometry(QRect(0, 0, 764, 22));
@@ -125,10 +128,10 @@ public:
     void retranslateUi(QMainWindow *ScammerBank)
     {
         ScammerBank->setWindowTitle(QApplication::translate("ScammerBank", "Samaranjan Project", nullptr));
-        label->setText(QString());
-        label_2->setText(QApplication::translate("ScammerBank", "<html><head/><body><p><span style=\" color:#eeeeec;\">WELCOME TO BANK</span></p></body></html>", nullptr));
+        label_2->setText(QApplication::translate("ScammerBank", "<html><head/><body><p align=\"center\"><span style=\" color:#0b0909;\">WELCOME</span></p><p align=\"center\"><span style=\" color:#0b0909;\">TO</span></p><p align=\"center\"><span style=\" color:#0b0909;\">SCAMMER BANK</span></p></body></html>", nullptr));
         signup->setText(QApplication::translate("ScammerBank", "SIGN UP", nullptr));
         signin->setText(QApplication::translate("ScammerBank", "SIGN IN", nullptr));
+        label->setText(QString());
     } // retranslateUi
 
 };

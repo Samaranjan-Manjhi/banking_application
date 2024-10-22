@@ -1,22 +1,13 @@
-#include "scammerbank.h"
-#include "ui_scammerbank.h"
-#include <QPixmap>
-#include <QTimer>
-#include <QLabel>
-#include <QFont>
-#include "sign_up.h"
+#include "dashboard.h"
+#include "ui_dashboard.h"
 #include <QPropertyAnimation>
-#include <QApplication>
-#include <QDesktopWidget>
-#include <QScreen>
-#include "sign_in.h"
 
-ScammerBank::ScammerBank(QWidget *parent)
-    : QMainWindow(parent)
-    , ui(new Ui::ScammerBank)
+Dashboard::Dashboard(QWidget *parent) :
+    QWidget(parent),
+    ui(new Ui::Dashboard)
 {
     ui->setupUi(this);
-    this->statusBar()->hide();
+
 
     // Create and configure the label
     QLabel *scrollLabel = new QLabel("WELCOME TO SCAMMER BANK", this);
@@ -38,19 +29,7 @@ ScammerBank::ScammerBank(QWidget *parent)
     animation->start();
 }
 
-ScammerBank::~ScammerBank()
+Dashboard::~Dashboard()
 {
     delete ui;
-}
-
-void ScammerBank::on_signup_clicked()
-{
-        Sign_up *signUpPage = new Sign_up(this); // Set parent to manage memory
-        signUpPage->show();
-}
-
-void ScammerBank::on_signin_clicked()
-{
-    Sign_IN *signinPage = new Sign_IN(this);
-    signinPage->show();
 }

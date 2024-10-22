@@ -1,5 +1,6 @@
 #include "scammerbank.h"
-
+#include "ui_sign_up.h"
+#include "sign_up.h"
 #include <QApplication>
 
 int main(int argc, char *argv[])
