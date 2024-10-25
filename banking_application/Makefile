@@ -367,6 +367,7 @@ compiler_rcc_clean:
 	-$(DEL_FILE) qrc_images.cpp
 qrc_images.cpp: images.qrc \
 		/usr/lib/qt5/bin/rcc \
+		eye-outline.svg \
 		images.jpeg \
 		Untitled.jpeg \
 		add-user-male.html \

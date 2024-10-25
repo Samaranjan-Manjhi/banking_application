@@ -106,6 +106,12 @@ QGroupBox#regform::title {
       <height>31</height>
      </rect>
     </property>
+    <property name="styleSheet">
+     <string notr="true">QComboBox#AccType{
+	font-family: 'Rasa'; 
+	font-size: 18px; 
+}</string>
+    </property>
     <item>
      <property name="text">
       <string>Please Select</string>
@@ -149,6 +155,12 @@ QGroupBox#regform::title {
       <width>171</width>
       <height>31</height>
      </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QComboBox#Brnch{
+	font-family: 'Rasa'; 
+	font-size: 18px; 
+}</string>
     </property>
     <item>
      <property name="text">
@@ -321,6 +333,12 @@ QGroupBox#regform::title {
     <property name="toolTip">
      <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Please Select Salutation&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
     </property>
+    <property name="styleSheet">
+     <string notr="true">QComboBox#Saluate {
+	font-family: 'Rasa'; 
+	font-size: 18px; 
+}</string>
+    </property>
     <item>
      <property name="text">
       <string>Please Select</string>
@@ -353,6 +371,12 @@ QGroupBox#regform::title {
     </property>
     <property name="toolTip">
      <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Please Select Country Code&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QComboBox#CC {
+	font-family: 'Rasa'; 
+	font-size: 18px; 
+}</string>
     </property>
     <item>
      <property name="text">
@@ -393,6 +417,12 @@ QGroupBox#regform::title {
       <height>31</height>
      </rect>
     </property>
+    <property name="styleSheet">
+     <string notr="true">QDateEdit#dateEdit{
+	font-family: 'Rasa'; 
+	font-size: 18px; 
+}</string>
+    </property>
    </widget>
    <widget class="QLabel" name="gender">
     <property name="geometry">
@@ -421,6 +451,12 @@ QGroupBox#regform::title {
       <width>161</width>
       <height>31</height>
      </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QComboBox#Gender{
+	font-family: 'Rasa'; 
+	font-size: 18px; 
+}</string>
     </property>
     <item>
      <property name="text">
@@ -475,6 +511,12 @@ QGroupBox#regform::title {
       <width>171</width>
       <height>31</height>
      </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QComboBox#Life {
+	font-family: 'Rasa'; 
+	font-size: 18px; 
+}</string>
     </property>
     <item>
      <property name="text">
@@ -554,6 +596,12 @@ QGroupBox#regform::title {
       <height>31</height>
      </rect>
     </property>
+    <property name="styleSheet">
+     <string notr="true">QComboBox#towncity {
+	font-family: 'Rasa'; 
+	font-size: 18px; 
+}</string>
+    </property>
     <item>
      <property name="text">
       <string>Please Select</string>
@@ -588,6 +636,12 @@ QGroupBox#regform::title {
       <width>121</width>
       <height>31</height>
      </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QComboBox#Countryname {
+	font-family: 'Rasa'; 
+	font-size: 18px; 
+}</string>
     </property>
     <item>
      <property name="text">
@@ -662,6 +716,9 @@ QGroupBox#regform::title {
       <pointsize>12</pointsize>
      </font>
     </property>
+    <property name="maxLength">
+     <number>6</number>
+    </property>
    </widget>
    <widget class="QLineEdit" name="fullname">
     <property name="geometry">
@@ -691,6 +748,9 @@ QGroupBox#regform::title {
      <font>
       <pointsize>12</pointsize>
      </font>
+    </property>
+    <property name="maxLength">
+     <number>10</number>
     </property>
    </widget>
    <widget class="QLineEdit" name="email">
@@ -750,6 +810,12 @@ QGroupBox#regform::title {
       <width>121</width>
       <height>31</height>
      </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QComboBox#education{
+	font-family: 'Rasa'; 
+	font-size: 18px; 
+}</string>
     </property>
     <item>
      <property name="text">
@@ -823,6 +889,12 @@ QGroupBox#regform::title {
       <height>31</height>
      </rect>
     </property>
+    <property name="styleSheet">
+     <string notr="true">QComboBox#idcard{
+	font-family: 'Rasa'; 
+	font-size: 18px; 
+}</string>
+    </property>
     <item>
      <property name="text">
       <string>Please Select</string>
@@ -886,6 +958,12 @@ QGroupBox#regform::title {
       <width>121</width>
       <height>31</height>
      </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QComboBox#work{
+	font-family: 'Rasa'; 
+	font-size: 18px; 
+}</string>
     </property>
     <item>
      <property name="text">
@@ -956,13 +1034,16 @@ QGroupBox#regform::title {
       <pointsize>12</pointsize>
      </font>
     </property>
+    <property name="echoMode">
+     <enum>QLineEdit::Password</enum>
+    </property>
    </widget>
    <widget class="QLabel" name="note">
     <property name="geometry">
      <rect>
       <x>30</x>
       <y>430</y>
-      <width>691</width>
+      <width>701</width>
       <height>20</height>
      </rect>
     </property>
@@ -1013,6 +1094,30 @@ QGroupBox#regform::title {
      </font>
     </property>
    </widget>
+   <widget class="QPushButton" name="showpassword">
+    <property name="geometry">
+     <rect>
+      <x>700</x>
+      <y>240</y>
+      <width>21</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QPushButton#showpassword {
+	background-color: transparent; 
+   border: none; 
+   padding: 0;
+}</string>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+    <property name="icon">
+     <iconset resource="images.qrc">
+      <normaloff>:/photo/eye-outline.svg</normaloff>:/photo/eye-outline.svg</iconset>
+    </property>
+   </widget>
   </widget>
   <widget class="QPushButton" name="signin">
    <property name="geometry">
@@ -1057,6 +1162,8 @@ QGroupBox#regform::title {
    </property>
   </widget>
  </widget>
- <resources/>
+ <resources>
+  <include location="images.qrc"/>
+ </resources>
  <connections/>
 </ui>

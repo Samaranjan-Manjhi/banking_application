@@ -3,6 +3,8 @@
 #define SIGN_IN_H
 
 #include <QWidget>
+#include "dashboard.h"
+#include <QStackedWidget>
 
 namespace Ui {
 class Sign_IN;
@@ -18,6 +20,7 @@ public:
 
 private slots:
     void on_insignup_clicked();
+
     void on_login_clicked();
 
 private:

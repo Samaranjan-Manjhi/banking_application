@@ -16,6 +16,8 @@
 #include <QSqlError>
 #include <QDebug>
 #include <QFile>
+#include <QTimer>
+#include <QStackedWidget>
 
 Sign_up::Sign_up(QWidget *parent) :
     QWidget(parent),
@@ -43,9 +45,30 @@ Sign_up::Sign_up(QWidget *parent) :
     animation->start();
 
     // Placeholder setup
-    ui->fullname->setPlaceholderText("Enter Your Full Name");
+/*    ui->fullname->setPlaceholderText("Enter Your Full Name");
     QFont font("Rasa", 15);
     ui->fullname->setFont(font);
+    ui->phoneno->setPlaceholderText("Enter Phone No.");
+    ui->username->setPlaceholderText("Enter User Name");
+    ui->password->setPlaceholderText("Enter Password");
+    ui->email->setPlaceholderText("Enter E-mail ID");
+    ui->postalcode->setPlaceholderText("Enter Code");
+    ui->address->setPlaceholderText("Enter Your Full Address");
+    */
+
+    // Set font family and size
+    QFont font("Rasa", 14);
+    // Apply the font to all relevant input fields
+    ui->fullname->setFont(font);
+    ui->phoneno->setFont(font);
+    ui->username->setFont(font);
+    ui->password->setFont(font);
+    ui->email->setFont(font);
+    ui->postalcode->setFont(font);
+    ui->address->setFont(font);
+
+    // Set placeholder text
+    ui->fullname->setPlaceholderText("Enter Your Full Name");
     ui->phoneno->setPlaceholderText("Enter Phone No.");
     ui->username->setPlaceholderText("Enter User Name");
     ui->password->setPlaceholderText("Enter Password");
@@ -67,7 +90,127 @@ void Sign_up::on_signin_clicked()
 
 void Sign_up::on_formsumit_clicked()
 {
-    QString dbName = "/tmp/banking_application1.db";
+        // Check for empty fields
+        QStringList missingFields;
+
+        // Check if any dropdown is not selected
+        //Validation for Account Type
+        if (ui->AccType->currentIndex() == 0)
+            missingFields << "Account Type";
+
+        //Validation for Branch
+        if (ui->Brnch->currentIndex() == 0)
+            missingFields << "Branch";
+
+        //Validation for Salutation and Full Name
+        if (ui->Saluate->currentIndex() == 0)
+            missingFields << "Salutation";
+        if (ui->fullname->text().isEmpty())
+            missingFields << "Full Name";
+        QStringList nameParts = ui->fullname->text().split(' ', QString::SkipEmptyParts);
+            if (nameParts.size() < 3) {
+                missingFields << "Full Name must contain at least 3 words";
+            } else {
+                for (const QString &part : nameParts) {
+                     if (part.length() < 2) {
+                        missingFields << "Each word in Full Name must be at least 3 characters";
+                        break;
+                     }
+                     if (part.contains(QRegExp("\\d"))) {
+                         missingFields << "Full Name must not contain digits.";
+                         break;
+                     }
+                }
+            }
+
+        //Validation for Country code and Phone number
+        if (ui->CC->currentIndex() == 0)
+            missingFields << "Phone Code";
+        QRegularExpression phonePattern("^[0-9]{10}$");
+
+        if (ui->phoneno->text().isEmpty()) {
+            missingFields << "Phone No.";
+        } else if (!phonePattern.match(ui->phoneno->text()).hasMatch()) {
+            missingFields << "Phone No. must be 10 digits and not contain any letters.";
+        }
+
+        //Validation for Marital Status
+        if (ui->Life->currentIndex() == 0)
+            missingFields << "Marital Status";
+
+        //Validation for Gender
+        if (ui->Gender->currentIndex() == 0)
+            missingFields << "Gender";
+
+        //Validation for Username
+        if (ui->username->text().isEmpty())
+            missingFields << "User Name";
+
+        //Validation for E-mail ID
+        if (ui->email->text().isEmpty())
+            missingFields << "E-mail ID";
+        else {
+            QRegularExpression emailRegex(R"(^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$)");
+            if (!emailRegex.match(ui->email->text()).hasMatch()) {
+                missingFields << "Invalid E-mail ID format";
+            }
+        }
+
+        //Validation for Password
+        //QString passwrd = ui->password->text();
+        QRegularExpression passwordPattern("^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[!@#$%^&*])[A-Za-z\\d!@#$%^&*]{8,15}$");
+        if (ui->password->text().isEmpty()) {
+            missingFields << "Password";
+        } else if (!passwordPattern.match(ui->password->text()).hasMatch()) {
+            missingFields << "Password must be 8-15 characters long and include at least one uppercase letter, one lowercase letter, one digit, and one special character.";
+        }
+
+        //Validation for Address
+        if (ui->address->text().isEmpty())
+            missingFields << "Address";
+
+        //Validation for City
+        if (ui->towncity->currentIndex() == 0)
+            missingFields << "City";
+
+        //Validation for Postal code
+        if (ui->postalcode->text().isEmpty())
+            missingFields << "Postal Code";
+        if (ui->postalcode->text().length() != 6 || !ui->postalcode->text().toUInt()) {
+            missingFields << "Postal Code must be 6 digits and not Alphabet";
+        }
+
+        //Validation for Country
+        if (ui->Countryname->currentIndex() == 0)
+            missingFields << "Country";
+
+        //Validation for Education Details
+        if (ui->education->currentIndex() == 0)
+            missingFields << "Qualification";
+
+        //Validation for Occupation
+        if (ui->work->currentIndex() == 0)
+            missingFields << "Occupation";
+
+        //Validation for ID Proof
+        if (ui->idcard->currentIndex() == 0)
+            missingFields << "ID Card";
+
+        // If there are missing fields, show a warning
+        if (!missingFields.isEmpty()) {
+            QMessageBox msgBox;
+            msgBox.setWindowTitle("Input Error");
+            msgBox.setText("Please fill in the following fields:\n" + missingFields.join("\n"));
+
+            // Set font family and size
+            msgBox.setStyleSheet("QLabel { font-family: 'Rasa'; font-size: 15px; }");
+
+            msgBox.setStandardButtons(QMessageBox::Ok);
+            msgBox.exec();
+            return;
+        }
+
+        QString dbName = "/tmp/banking_application1.db";
         QSqlDatabase db = QSqlDatabase::addDatabase("QSQLITE");
         db.setDatabaseName(dbName);
 
@@ -111,7 +254,7 @@ void Sign_up::on_formsumit_clicked()
         QString accountType = ui->AccType->currentText();
         QString branch = ui->Brnch->currentText();
         QString salute = ui->Saluate->currentText();
-        QString full_name = ui->fullname->text();
+        QString full_name = ui->fullname->text().trimmed();
         QString phone_code = ui->CC->currentText();
         QString phone_no = ui->phoneno->text();
         QString life = ui->Life->currentText();
@@ -186,4 +329,30 @@ void Sign_up::on_formsumit_clicked()
         ui->education->setCurrentIndex(0);
         ui->work->setCurrentIndex(0);
         ui->idcard->setCurrentIndex(0);
+}
+
+bool isPasswordVisible = false;
+void Sign_up::on_showpassword_clicked()
+{
+    isPasswordVisible = !isPasswordVisible; // Toggle the state
+    if (isPasswordVisible) {
+        ui->password->setEchoMode(QLineEdit::Normal); // Show password
+    } else {
+        ui->password->setEchoMode(QLineEdit::Password); // Hide password
+    }
+    /*
+    // Toggle password visibility
+    bool isPasswordVisible = ui->password->echoMode() == QLineEdit::Password;
+
+    if (isPasswordVisible) {
+        ui->password->setEchoMode(QLineEdit::Normal); // Show password
+
+        // Create a timer to hide the password after 15 seconds
+        QTimer::singleShot(15000, this, [this]() {
+            ui->password->setEchoMode(QLineEdit::Password); // Hide password
+        });
+    } else {
+        ui->password->setEchoMode(QLineEdit::Password); // Hide password
+    }
+*/
 }

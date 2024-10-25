@@ -19,7 +19,7 @@
      <x>0</x>
      <y>10</y>
      <width>761</width>
-     <height>561</height>
+     <height>531</height>
     </rect>
    </property>
    <property name="text">
@@ -56,12 +56,12 @@
     <set>Qt::AlignCenter</set>
    </property>
   </widget>
-  <widget class="QPushButton" name="pushButton">
+  <widget class="QPushButton" name="profile">
    <property name="geometry">
     <rect>
-     <x>10</x>
+     <x>20</x>
      <y>60</y>
-     <width>61</width>
+     <width>71</width>
      <height>25</height>
     </rect>
    </property>
@@ -77,12 +77,12 @@
     <string>Profile</string>
    </property>
   </widget>
-  <widget class="QPushButton" name="pushButton_2">
+  <widget class="QPushButton" name="details">
    <property name="geometry">
     <rect>
-     <x>80</x>
+     <x>100</x>
      <y>60</y>
-     <width>101</width>
+     <width>71</width>
      <height>25</height>
     </rect>
    </property>
@@ -95,13 +95,13 @@
     </font>
    </property>
    <property name="text">
-    <string>Dashboard</string>
+    <string>Details</string>
    </property>
   </widget>
-  <widget class="QPushButton" name="pushButton_3">
+  <widget class="QPushButton" name="deposit">
    <property name="geometry">
     <rect>
-     <x>190</x>
+     <x>180</x>
      <y>60</y>
      <width>81</width>
      <height>25</height>
@@ -119,10 +119,10 @@
     <string>Deposit</string>
    </property>
   </widget>
-  <widget class="QPushButton" name="pushButton_4">
+  <widget class="QPushButton" name="fundtransfer">
    <property name="geometry">
     <rect>
-     <x>280</x>
+     <x>270</x>
      <y>60</y>
      <width>131</width>
      <height>25</height>
@@ -140,10 +140,10 @@
     <string>Fund Transfer</string>
    </property>
   </widget>
-  <widget class="QPushButton" name="pushButton_5">
+  <widget class="QPushButton" name="card">
    <property name="geometry">
     <rect>
-     <x>420</x>
+     <x>410</x>
      <y>60</y>
      <width>61</width>
      <height>25</height>
@@ -161,10 +161,10 @@
     <string>Card</string>
    </property>
   </widget>
-  <widget class="QPushButton" name="pushButton_6">
+  <widget class="QPushButton" name="service">
    <property name="geometry">
     <rect>
-     <x>490</x>
+     <x>480</x>
      <y>60</y>
      <width>81</width>
      <height>25</height>
@@ -182,10 +182,10 @@
     <string>Service</string>
    </property>
   </widget>
-  <widget class="QPushButton" name="pushButton_7">
+  <widget class="QPushButton" name="activity">
    <property name="geometry">
     <rect>
-     <x>580</x>
+     <x>570</x>
      <y>60</y>
      <width>81</width>
      <height>25</height>
@@ -203,10 +203,10 @@
     <string>Activity</string>
    </property>
   </widget>
-  <widget class="QPushButton" name="pushButton_8">
+  <widget class="QPushButton" name="logout">
    <property name="geometry">
     <rect>
-     <x>670</x>
+     <x>660</x>
      <y>60</y>
      <width>81</width>
      <height>25</height>
@@ -222,6 +222,22 @@
    </property>
    <property name="text">
     <string>Log Out</string>
+   </property>
+  </widget>
+  <widget class="QTableView" name="dataview">
+   <property name="geometry">
+    <rect>
+     <x>20</x>
+     <y>100</y>
+     <width>721</width>
+     <height>411</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">QTableView#tableView {
+	 /*background-color: transparent; 
+    border: none;*/
+}</string>
    </property>
   </widget>
  </widget>

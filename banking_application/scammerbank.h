@@ -22,6 +22,11 @@ public:
     void showScrollLabel();
     void hideScrollLabel();
 
+    void showDashboard(); // Method to show the dashboard
+    void showSignUp();    // Method to show the sign-up page
+    void signInPage();    // Method to show the sign-in page
+    void showHome();       // Method to show the home page
+
 private slots:
     void on_signup_clicked();
     void on_signin_clicked();
@@ -29,5 +34,6 @@ private slots:
 private:
     Ui::ScammerBank *ui;
     QLabel *scrollLabel;
+    QStackedWidget *stackedWidget;
 };
 #endif // SCAMMERBANK_H

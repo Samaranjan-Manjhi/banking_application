@@ -10,6 +10,7 @@
 #define UI_SIGN_UP_H
 
 #include <QtCore/QVariant>
+#include <QtGui/QIcon>
 #include <QtWidgets/QApplication>
 #include <QtWidgets/QComboBox>
 #include <QtWidgets/QDateEdit>
@@ -68,6 +69,7 @@ public:
     QLabel *note;
     QLabel *username_2;
     QLineEdit *username;
+    QPushButton *showpassword;
     QPushButton *signin;
     QPushButton *formsumit;
 
@@ -115,6 +117,10 @@ public:
         AccType->addItem(QString());
         AccType->setObjectName(QString::fromUtf8("AccType"));
         AccType->setGeometry(QRect(130, 30, 121, 31));
+        AccType->setStyleSheet(QString::fromUtf8("QComboBox#AccType{\n"
+"	font-family: 'Rasa'; \n"
+"	font-size: 18px; \n"
+"}"));
         branch = new QLabel(regform);
         branch->setObjectName(QString::fromUtf8("branch"));
         branch->setGeometry(QRect(480, 30, 71, 31));
@@ -130,6 +136,10 @@ public:
         Brnch->addItem(QString());
         Brnch->setObjectName(QString::fromUtf8("Brnch"));
         Brnch->setGeometry(QRect(550, 30, 171, 31));
+        Brnch->setStyleSheet(QString::fromUtf8("QComboBox#Brnch{\n"
+"	font-family: 'Rasa'; \n"
+"	font-size: 18px; \n"
+"}"));
         fistname = new QLabel(regform);
         fistname->setObjectName(QString::fromUtf8("fistname"));
         fistname->setGeometry(QRect(280, 70, 81, 21));
@@ -168,11 +178,19 @@ public:
         Saluate->addItem(QString());
         Saluate->setObjectName(QString::fromUtf8("Saluate"));
         Saluate->setGeometry(QRect(130, 90, 121, 31));
+        Saluate->setStyleSheet(QString::fromUtf8("QComboBox#Saluate {\n"
+"	font-family: 'Rasa'; \n"
+"	font-size: 18px; \n"
+"}"));
         CC = new QComboBox(regform);
         CC->addItem(QString());
         CC->addItem(QString());
         CC->setObjectName(QString::fromUtf8("CC"));
         CC->setGeometry(QRect(130, 140, 121, 31));
+        CC->setStyleSheet(QString::fromUtf8("QComboBox#CC {\n"
+"	font-family: 'Rasa'; \n"
+"	font-size: 18px; \n"
+"}"));
         dob = new QLabel(regform);
         dob->setObjectName(QString::fromUtf8("dob"));
         dob->setGeometry(QRect(20, 190, 91, 31));
@@ -180,6 +198,10 @@ public:
         dateEdit = new QDateEdit(regform);
         dateEdit->setObjectName(QString::fromUtf8("dateEdit"));
         dateEdit->setGeometry(QRect(130, 190, 91, 31));
+        dateEdit->setStyleSheet(QString::fromUtf8("QDateEdit#dateEdit{\n"
+"	font-family: 'Rasa'; \n"
+"	font-size: 18px; \n"
+"}"));
         gender = new QLabel(regform);
         gender->setObjectName(QString::fromUtf8("gender"));
         gender->setGeometry(QRect(230, 190, 41, 31));
@@ -195,6 +217,10 @@ public:
         Gender->addItem(QString());
         Gender->setObjectName(QString::fromUtf8("Gender"));
         Gender->setGeometry(QRect(270, 190, 161, 31));
+        Gender->setStyleSheet(QString::fromUtf8("QComboBox#Gender{\n"
+"	font-family: 'Rasa'; \n"
+"	font-size: 18px; \n"
+"}"));
         life = new QLabel(regform);
         life->setObjectName(QString::fromUtf8("life"));
         life->setGeometry(QRect(440, 140, 111, 31));
@@ -211,6 +237,10 @@ public:
         Life->addItem(QString());
         Life->setObjectName(QString::fromUtf8("Life"));
         Life->setGeometry(QRect(550, 140, 171, 31));
+        Life->setStyleSheet(QString::fromUtf8("QComboBox#Life {\n"
+"	font-family: 'Rasa'; \n"
+"	font-size: 18px; \n"
+"}"));
         resAdd = new QLabel(regform);
         resAdd->setObjectName(QString::fromUtf8("resAdd"));
         resAdd->setGeometry(QRect(20, 290, 111, 31));
@@ -227,6 +257,10 @@ public:
         towncity->addItem(QString());
         towncity->setObjectName(QString::fromUtf8("towncity"));
         towncity->setGeometry(QRect(130, 340, 121, 31));
+        towncity->setStyleSheet(QString::fromUtf8("QComboBox#towncity {\n"
+"	font-family: 'Rasa'; \n"
+"	font-size: 18px; \n"
+"}"));
         Countryname = new QComboBox(regform);
         Countryname->addItem(QString());
         Countryname->addItem(QString());
@@ -234,6 +268,10 @@ public:
         Countryname->addItem(QString());
         Countryname->setObjectName(QString::fromUtf8("Countryname"));
         Countryname->setGeometry(QRect(600, 340, 121, 31));
+        Countryname->setStyleSheet(QString::fromUtf8("QComboBox#Countryname {\n"
+"	font-family: 'Rasa'; \n"
+"	font-size: 18px; \n"
+"}"));
         postalcode_2 = new QLabel(regform);
         postalcode_2->setObjectName(QString::fromUtf8("postalcode_2"));
         postalcode_2->setGeometry(QRect(270, 340, 101, 31));
@@ -248,6 +286,7 @@ public:
         QFont font6;
         font6.setPointSize(12);
         postalcode->setFont(font6);
+        postalcode->setMaxLength(6);
         fullname = new QLineEdit(regform);
         fullname->setObjectName(QString::fromUtf8("fullname"));
         fullname->setGeometry(QRect(260, 90, 461, 31));
@@ -258,6 +297,7 @@ public:
         phoneno->setObjectName(QString::fromUtf8("phoneno"));
         phoneno->setGeometry(QRect(260, 140, 171, 31));
         phoneno->setFont(font6);
+        phoneno->setMaxLength(10);
         email = new QLineEdit(regform);
         email->setObjectName(QString::fromUtf8("email"));
         email->setGeometry(QRect(130, 240, 301, 31));
@@ -281,6 +321,10 @@ public:
         education->addItem(QString());
         education->setObjectName(QString::fromUtf8("education"));
         education->setGeometry(QRect(130, 390, 121, 31));
+        education->setStyleSheet(QString::fromUtf8("QComboBox#education{\n"
+"	font-family: 'Rasa'; \n"
+"	font-size: 18px; \n"
+"}"));
         idcard_2 = new QLabel(regform);
         idcard_2->setObjectName(QString::fromUtf8("idcard_2"));
         idcard_2->setGeometry(QRect(530, 390, 71, 31));
@@ -296,6 +340,10 @@ public:
         idcard->addItem(QString());
         idcard->setObjectName(QString::fromUtf8("idcard"));
         idcard->setGeometry(QRect(600, 390, 121, 31));
+        idcard->setStyleSheet(QString::fromUtf8("QComboBox#idcard{\n"
+"	font-family: 'Rasa'; \n"
+"	font-size: 18px; \n"
+"}"));
         occupation = new QLabel(regform);
         occupation->setObjectName(QString::fromUtf8("occupation"));
         occupation->setGeometry(QRect(270, 390, 101, 31));
@@ -310,6 +358,10 @@ public:
         work->addItem(QString());
         work->setObjectName(QString::fromUtf8("work"));
         work->setGeometry(QRect(370, 390, 121, 31));
+        work->setStyleSheet(QString::fromUtf8("QComboBox#work{\n"
+"	font-family: 'Rasa'; \n"
+"	font-size: 18px; \n"
+"}"));
         password_2 = new QLabel(regform);
         password_2->setObjectName(QString::fromUtf8("password_2"));
         password_2->setGeometry(QRect(470, 240, 91, 31));
@@ -318,9 +370,10 @@ public:
         password->setObjectName(QString::fromUtf8("password"));
         password->setGeometry(QRect(550, 240, 171, 31));
         password->setFont(font6);
+        password->setEchoMode(QLineEdit::Password);
         note = new QLabel(regform);
         note->setObjectName(QString::fromUtf8("note"));
-        note->setGeometry(QRect(30, 430, 691, 20));
+        note->setGeometry(QRect(30, 430, 701, 20));
         note->setFont(font3);
         note->setAlignment(Qt::AlignCenter);
         username_2 = new QLabel(regform);
@@ -331,6 +384,17 @@ public:
         username->setObjectName(QString::fromUtf8("username"));
         username->setGeometry(QRect(550, 190, 171, 31));
         username->setFont(font6);
+        showpassword = new QPushButton(regform);
+        showpassword->setObjectName(QString::fromUtf8("showpassword"));
+        showpassword->setGeometry(QRect(700, 240, 21, 31));
+        showpassword->setStyleSheet(QString::fromUtf8("QPushButton#showpassword {\n"
+"	background-color: transparent; \n"
+"   border: none; \n"
+"   padding: 0;\n"
+"}"));
+        QIcon icon;
+        icon.addFile(QString::fromUtf8(":/photo/eye-outline.svg"), QSize(), QIcon::Normal, QIcon::Off);
+        showpassword->setIcon(icon);
         signin = new QPushButton(Sign_up);
         signin->setObjectName(QString::fromUtf8("signin"));
         signin->setGeometry(QRect(410, 480, 89, 31));
@@ -451,6 +515,7 @@ public:
         password_2->setText(QApplication::translate("Sign_up", "Password", nullptr));
         note->setText(QApplication::translate("Sign_up", "Note: All fields are required.", nullptr));
         username_2->setText(QApplication::translate("Sign_up", "User Name", nullptr));
+        showpassword->setText(QString());
         signin->setText(QApplication::translate("Sign_up", "SIGN IN", nullptr));
         formsumit->setText(QApplication::translate("Sign_up", "SUBMIT", nullptr));
     } // retranslateUi

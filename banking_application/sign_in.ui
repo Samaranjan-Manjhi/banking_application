@@ -159,7 +159,7 @@ QGroupBox#signinpage::title {
      </rect>
     </property>
    </widget>
-   <widget class="QLineEdit" name="emailidin">
+   <widget class="QLineEdit" name="emailin">
     <property name="geometry">
      <rect>
       <x>30</x>

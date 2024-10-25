@@ -29,7 +29,7 @@ public:
     QLabel *label_4;
     QLabel *label_5;
     QLineEdit *usernamein;
-    QLineEdit *emailidin;
+    QLineEdit *emailin;
     QLineEdit *passwordin;
     QPushButton *login;
     QLabel *label_6;
@@ -93,9 +93,9 @@ public:
         usernamein = new QLineEdit(signinpage);
         usernamein->setObjectName(QString::fromUtf8("usernamein"));
         usernamein->setGeometry(QRect(30, 70, 291, 31));
-        emailidin = new QLineEdit(signinpage);
-        emailidin->setObjectName(QString::fromUtf8("emailidin"));
-        emailidin->setGeometry(QRect(30, 150, 291, 31));
+        emailin = new QLineEdit(signinpage);
+        emailin->setObjectName(QString::fromUtf8("emailin"));
+        emailin->setGeometry(QRect(30, 150, 291, 31));
         passwordin = new QLineEdit(signinpage);
         passwordin->setObjectName(QString::fromUtf8("passwordin"));
         passwordin->setGeometry(QRect(30, 230, 291, 31));

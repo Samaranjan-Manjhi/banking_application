@@ -2,6 +2,7 @@
 #include "ui_sign_up.h"
 #include "sign_up.h"
 #include <QApplication>
+#include <QStackedWidget>
 
 int main(int argc, char *argv[])
 {

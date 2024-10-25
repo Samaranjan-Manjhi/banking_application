@@ -1,6 +1,10 @@
 #include "dashboard.h"
 #include "ui_dashboard.h"
 #include <QPropertyAnimation>
+#include "sign_in.h"
+#include "sign_up.h"
+#include "scammerbank.h"
+#include <QMessageBox>
 
 Dashboard::Dashboard(QWidget *parent) :
     QWidget(parent),
@@ -27,9 +31,25 @@ Dashboard::Dashboard(QWidget *parent) :
     animation->setEndValue(QPoint(-scrollLabel->width(), scrollLabel->y()));
     animation->setLoopCount(-1); // Loop indefinitely
     animation->start();
+
+
 }
 
 Dashboard::~Dashboard()
 {
     delete ui;
+}
+
+void Dashboard::on_profile_clicked()
+{
+
+}
+
+void Dashboard::on_logout_clicked()
+{
+    //ScammerBank *home = new ScammerBank(this);
+    //home->show();
+    this->deleteLater();
+    ScammerBank *home = new ScammerBank(this);
+    home->show();
 }

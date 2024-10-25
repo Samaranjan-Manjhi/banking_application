@@ -4,6 +4,7 @@
 #include <QWidget>
 #include <QSqlDatabase>
 #include <QSqlQuery>
+#include <QStackedWidget>
 
 namespace Ui {
 class Sign_up;
@@ -21,10 +22,11 @@ private slots:
     void on_signin_clicked();
     void on_formsumit_clicked();
 
+    void on_showpassword_clicked();
+
 private:
     Ui::Sign_up *ui;
-    //bool createDatabase();
-    //bool openDatabase();
+
 };
 
 bool createDatabase();

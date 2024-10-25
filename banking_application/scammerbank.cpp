@@ -10,6 +10,8 @@
 #include <QDesktopWidget>
 #include <QScreen>
 #include "sign_in.h"
+#include "dashboard.h"
+#include <QStackedWidget>
 
 ScammerBank::ScammerBank(QWidget *parent)
     : QMainWindow(parent)
@@ -36,6 +38,25 @@ ScammerBank::ScammerBank(QWidget *parent)
     animation->setEndValue(QPoint(-scrollLabel->width(), scrollLabel->y()));
     animation->setLoopCount(-1); // Loop indefinitely
     animation->start();
+/*
+    // Create the stacked widget
+        stackedWidget = new QStackedWidget(this);
+        setCentralWidget(stackedWidget); // Set it as the central widget
+
+        // Create the ScammerBank page (this) and add it to the stacked widget
+        stackedWidget->addWidget(this);
+        stackedWidget->setCurrentIndex(0); // Show this page first
+
+        // Add other pages (e.g., Sign_up, Sign_in, Dashboard)
+        Sign_up *signUpPage = new Sign_up(this);
+        stackedWidget->addWidget(signUpPage);
+
+        Sign_IN *signinPage = new Sign_IN(this);
+        stackedWidget->addWidget(signinPage);
+
+        Dashboard *dashboardPage = new Dashboard(this);
+        stackedWidget->addWidget(dashboardPage);
+        */
 }
 
 ScammerBank::~ScammerBank()
@@ -54,3 +75,5 @@ void ScammerBank::on_signin_clicked()
     Sign_IN *signinPage = new Sign_IN(this);
     signinPage->show();
 }
+
+
